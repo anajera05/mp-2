@@ -33,10 +33,19 @@ const ParagraphStyle = styled.p`
 
 export default function Jokes(props: { data: Joke[] }) {
     const [revealedJokeId, setRevealedJokeId] = useState(-1);
+    const [lastID, setLastID] = useState(-1);
 
 
     function ShowJoke(jokeId: number) {
-        setRevealedJokeId(lastID => (lastID === jokeId ? -1 : jokeId));
+        let eq = lastID === jokeId;
+        setRevealedJokeId(eq ? -1 : jokeId);
+        if (eq) {
+            setRevealedJokeId(-1);
+            setLastID(-1);
+        } else {
+            setRevealedJokeId(jokeId);
+            setLastID(jokeId);
+        }
     }
 
     return (
