@@ -39,13 +39,7 @@ export default function Jokes(props: { data: Joke[] }) {
     function ShowJoke(jokeId: number) {
         let eq = lastID === jokeId;
         setRevealedJokeId(eq ? -1 : jokeId);
-        if (eq) {
-            setRevealedJokeId(-1);
-            setLastID(-1);
-        } else {
-            setRevealedJokeId(jokeId);
-            setLastID(jokeId);
-        }
+        setLastID(eq ? -1 : jokeId);
     }
 
     return (
